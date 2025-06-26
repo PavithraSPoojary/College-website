@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MGMEC - Feedback</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- EmailJS Script -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "ZkHUXTvRHtLEHF2hB",
+            });
+        })();
+    </script>
+    <style>
+        :root {
+            --primary: #400057;    /* Main brand color - Purple */
+            --secondary: #FFD700;  /* Accent color - Gold */
+            --dark: #333;         /* Dark text color */
+            --light: #f8f9fa;     /* Light background color */
+            --white: #ffffff;     /* Pure white */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-icons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .header-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background-color: var(--secondary);
+            color: var(--dark);
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-icon:hover {
+            transform: scale(1.1);
+            /* background-color: #e6c200; */
+        }
+
+        .main-content {
+            padding: 80px 50px;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .big-header {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .big-header::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 12px;
+            border: 2px solid #ddd;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feedback-form:hover {
+            transform: translateY(-5px);
+            /* border-color: var(--secondary); */
+            /* box-shadow: 0 8px 24px rgba(255, 215, 0, 0.3); */
+        }
+
+        .feedback-form label {
+            font-size: 16px;
+            color: var(--dark);
+            margin-bottom: 5px;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: var(--);
+            color: var(--dark);
+            font-size: 16px;
+            /* transition: all 0.3s ease; */
+            /* box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05); */
+        }
+
+        .feedback-form input:focus,
+        .feedback-form textarea:focus {
+            outline: none;
+            /* border-color: var(--secondary); */
+            background-color: #e5e7eb;
+            /* box-shadow: 0 0 8px rgba(255, 215, 0, 0.3); */
+        }
+
+        .feedback-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .feedback-form button {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feedback-form button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            /* transform: translate(-50%, -50%); */
+            /* transition: width 0.6s ease, height 0.6s ease; */
+        }
+
+        .feedback-form button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .feedback-form button:hover {
+            background-color: #e6c200;
+            transform: scale(1.05);
+            /* box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4); */
+        }
+
+        .feedback-form button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            /* box-shadow: none; */
+        }
+
+        .loader {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 4px solid var(--dark);
+            border-top: 4px solid var(--secondary);
+            border-radius: 50%;
+            /* animation: spin 1s linear infinite; */
+            margin: 10px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            color: var(--secondary);
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 10px;
+            /* animation: fadeIn 0.5s ease; */
+        }
+
+        .error-message {
+            display: none;
+            text-align: center;
+            color: #dc2626;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 10px;
+            /* animation: fadeIn 0.5s ease; */
+        }
+
+        /* @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        } */
+
+        @media screen and (max-width: 768px) {
+            .main-content {
+                padding: 40px 15px;
+                max-width: 100%;
+            }
+
+            .big-header {
+                font-size: 36px;
+            }
+
+            .feedback-form {
+                max-width: 100%;
+                padding: 15px;
+            }
+
+            .feedback-form label,
+            .feedback-form input,
+            .feedback-form textarea,
+            .feedback-form button,
+            .success-message,
+            .error-message {
+                font-size: 14px;
+            }
+
+            .feedback-form textarea {
+                min-height: 100px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .big-header {
+                font-size: 28px;
+            }
+
+            .feedback-form {
+                padding: 12px;
+            }
+
+            .feedback-form label,
+            .feedback-form input,
+            .feedback-form textarea,
+            .feedback-form button,
+            .success-message,
+            .error-message {
+                font-size: 13px;
+            }
+
+            .feedback-form textarea {
+                min-height: 80px;
+            }
+
+            .loader {
+                width: 20px;
+                height: 20px;
+                border-width: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="header-icons">
+        <button class="header-icon back-button" title="Back">
+            <i class='bx bx-arrow-back'></i>
+        </button>
+        <button class="header-icon theme-toggle" title="Toggle Theme">
+            <i class='bx bx-moon'></i>
+        </button>
+    </div> -->
+
+    <div class="main-content">
+        <h1 class="big-header">MGMEC</h1>
+        <div class="section">
+            
+            <div class="subsections-container">
+                <div class="subsection">
+                    <!-- <h3 class="subsection-title">Your Feedback</h3> -->
+                    <p class="subsection-description">
+                        We’d love to hear your thoughts! Use the form below to share your feedback or to ask any queries.
+                    </p>
+                    <br><br>
+                    <div class="feedback-form" id="feedback-form">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                        
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        
+                        <label for="message">Your Message </label>
+                        <textarea id="message" name="message" placeholder="Type here" required></textarea>
+                        
+                        <button type="button" id="submit-btn" onclick="submitFeedback()">Submit</button>
+                        <div class="loader" id="loader"></div>
+                        <div class="success-message" id="success-message">Message Submitted!</div>
+                        <div class="error-message" id="error-message">Failed to send message. Please try again.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.querySelector('.theme-toggle');
+            const body = document.body;
+            const themeIcon = themeToggle.querySelector('i');
+
+            // Load saved theme from localStorage
+            if (localStorage.getItem('theme') === 'light') {
+                body.classList.add('light-theme');
+                themeIcon.classList.replace('bx-moon', 'bx-sun');
+            }
+
+            themeToggle.addEventListener('click', function() {
+                body.classList.toggle('light-theme');
+                if (body.classList.contains('light-theme')) {
+                    themeIcon.classList.replace('bx-moon', 'bx-sun');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    themeIcon.classList.replace('bx-sun', 'bx-moon');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            // Back button functionality
+            const backButton = document.querySelector('.back-button');
+            if (backButton) {
+                backButton.addEventListener('click', function() {
+                    window.history.back();
+                });
+            }
+        });
+
+        function submitFeedback() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const submitBtn = document.getElementById('submit-btn');
+            const loader = document.getElementById('loader');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            const formInputs = document.querySelectorAll('.feedback-form input, .feedback-form textarea');
+
+            // Validate form
+            if (!name || !email || !message) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Please fill in all fields.';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+                return;
+            }
+
+            // Additional email format validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Please enter a valid email address.';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+                return;
+            }
+
+            // Show loader and disable button
+            loader.style.display = 'block';
+            submitBtn.disabled = true;
+            formInputs.forEach(input => input.disabled = true);
+
+            // EmailJS parameters
+            const templateParams = {
+                name: name,
+                email: email,
+                message: message
+            };
+
+            // Send email using EmailJS
+            emailjs.send('service_x1g2z9j', 'template_61yvf6u', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    // Success: Hide loader, show success message, clear form
+                    loader.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    formInputs.forEach(input => {
+                        input.disabled = false;
+                        input.value = '';
+                    });
+
+                    // Hide success message after 3 seconds and re-enable button
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }, function(error) {
+                    console.error('FAILED...', error);
+                    // Error: Hide loader, show error message, re-enable form
+                    loader.style.display = 'none';
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'Failed to send feedback. Please try again.';
+                    formInputs.forEach(input => input.disabled = false);
+                    submitBtn.disabled = false;
+
+                    // Hide error message after 3 seconds
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                });
+        }
+    </script>
+</body>
+</html>

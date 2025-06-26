@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrackIT - About</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- EmailJS Script -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "ZkHUXTvRHtLEHF2hB",
+            });
+        })();
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f0f0f;
+            color: #f0f0f0;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-theme {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .header-icons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .header-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background-color: #22c55e;
+            color: white;
+            border: none;
+        }
+
+        body.light-theme .header-icon {
+            background-color: #2563eb;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-icon:hover {
+            transform: scale(1.1);
+            background-color: #16a34a;
+        }
+
+        body.light-theme .header-icon:hover {
+            background-color: #1d4ed8;
+        }
+
+        .main-content {
+            padding: 80px 50px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .big-header {
+            font-size: 48px;
+            font-weight: 700;
+            color: #f0f0f0;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .big-header::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: #22c55e;
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        body.light-theme .big-header {
+            color: #333;
+        }
+
+        body.light-theme .big-header::after {
+            background-color: #2563eb;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            background-color: #1a1a1a;
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        body.light-theme .section {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            border-color: #22c55e;
+        }
+
+        body.light-theme .section:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-color: #2563eb;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        body.light-theme .section-title {
+            color: #333;
+        }
+
+        .subsections-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .subsection {
+            background-color: #222;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        body.light-theme .subsection {
+            background-color: #f9fafb;
+        }
+
+        .subsection:hover {
+            background-color: #333;
+            transform: translateY(-4px);
+        }
+
+        body.light-theme .subsection:hover {
+            background-color: #e5e7eb;
+        }
+
+        .subsection-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: #f0f0f0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        body.light-theme .subsection-title {
+            color: #333;
+        }
+
+        .subsection-description {
+            font-size: 16px;
+            color: #aaa;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        body.light-theme .subsection-description {
+            color: #666;
+        }
+
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            border: 2px solid #333;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        body.light-theme .feedback-form {
+            background-color: #ffffff;
+            border: 2px solid #ddd;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .feedback-form:hover {
+            transform: translateY(-5px);
+            border-color: #22c55e;
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+        }
+
+        body.light-theme .feedback-form:hover {
+            border-color: #2563eb;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+        }
+
+        .feedback-form label {
+            font-size: 16px;
+            color: #f0f0f0;
+            margin-bottom: 5px;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        body.light-theme .feedback-form label {
+            color: #333;
+        }
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background-color: #2a2a2a;
+            color: #f0f0f0;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-theme .feedback-form input,
+        body.light-theme .feedback-form textarea {
+            border: 1px solid #ddd;
+            background-color: #f0f0f0;
+            color: #333;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .feedback-form input:focus,
+        .feedback-form textarea:focus {
+            outline: none;
+            border-color: #22c55e;
+            background-color: #333;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+        }
+
+        body.light-theme .feedback-form input:focus,
+        body.light-theme .feedback-form textarea:focus {
+            border-color: #2563eb;
+            background-color: #e5e7eb;
+            box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .feedback-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .feedback-form button {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: #22c55e;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.light-theme .feedback-form button {
+            background-color: #2563eb;
+        }
+
+        .feedback-form button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .feedback-form button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .feedback-form button:hover {
+            background-color: #16a34a;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+        }
+
+        body.light-theme .feedback-form button:hover {
+            background-color: #1d4ed8;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .feedback-form button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        body.light-theme .feedback-form button:disabled {
+            background-color: #ccc;
+        }
+
+        .loader {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 4px solid #f0f0f0;
+            border-top: 4px solid #22c55e;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+
+        body.light-theme .loader {
+            border: 4px solid #666;
+            border-top: 4px solid #2563eb;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #22c55e;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        body.light-theme .success-message {
+            color: #2563eb;
+        }
+
+        .error-message {
+            display: none;
+            text-align: center;
+            color: #ef4444;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        body.light-theme .error-message {
+            color: #dc2626;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media screen and (max-width: 768px) {
+            .main-content {
+                padding: 40px 15px;
+                margin: 0 auto;
+                max-width: 100%;
+            }
+
+            .big-header {
+                font-size: 36px;
+            }
+
+            .section {
+                padding: 20px 15px;
+                margin: 0 auto 40px;
+                max-width: 600px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .subsections-container {
+                gap: 15px;
+            }
+
+            .subsection {
+                padding: 15px;
+            }
+
+            .subsection-title {
+                font-size: 18px;
+            }
+
+            .subsection-description {
+                font-size: 14px;
+            }
+
+            .feedback-form {
+                max-width: 100%;
+                padding: 15px;
+            }
+
+            .feedback-form label,
+            .feedback-form input,
+            .feedback-form textarea,
+            .feedback-form button,
+            .success-message,
+            .error-message {
+                font-size: 14px;
+            }
+
+            .feedback-form textarea {
+                min-height: 100px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .big-header {
+                font-size: 28px;
+            }
+
+            .section {
+                padding: 15px 12px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .subsection {
+                padding: 12px;
+            }
+
+            .subsection-title {
+                font-size: 16px;
+            }
+
+            .subsection-description {
+                font-size: 13px;
+            }
+
+            .feedback-form {
+                padding: 12px;
+            }
+
+            .feedback-form label,
+            .feedback-form input,
+            .feedback-form textarea,
+            .feedback-form button,
+            .success-message,
+            .error-message {
+                font-size: 13px;
+            }
+
+            .feedback-form textarea {
+                min-height: 80px;
+            }
+
+            .loader {
+                width: 20px;
+                height: 20px;
+                border-width: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-icons">
+        <button class="header-icon back-button" title="Back">
+            <i class='bx bx-arrow-back'></i>
+        </button>
+        <button class="header-icon theme-toggle" title="Toggle Theme">
+            <i class='bx bx-moon'></i>
+        </button>
+    </div>
+
+    <div class="main-content">
+        <h1 class="big-header">CrackIT About</h1>
+        <div class="section">
+            <h2 class="section-title">Feedback</h2>
+            <div class="subsections-container">
+                <div class="subsection">
+                    <h3 class="subsection-title">Your Feedback</h3>
+                    <p class="subsection-description">
+                        We’d love to hear your thoughts! Use the form below to share your feedback about CrackIT’s practice questions, mock tests, or overall experience.
+                    </p>
+                    <div class="feedback-form" id="feedback-form">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                        
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        
+                        <label for="message">Your Feedback</label>
+                        <textarea id="message" name="message" placeholder="Share your feedback here" required></textarea>
+                        
+                        <button type="button" id="submit-btn" onclick="submitFeedback()">Submit Feedback</button>
+                        <div class="loader" id="loader"></div>
+                        <div class="success-message" id="success-message">Feedback Submitted!</div>
+                        <div class="error-message" id="error-message">Failed to send feedback. Please try again.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.querySelector('.theme-toggle');
+            const body = document.body;
+            const themeIcon = themeToggle.querySelector('i');
+
+            // Load saved theme from localStorage
+            if (localStorage.getItem('theme') === 'light') {
+                body.classList.add('light-theme');
+                themeIcon.classList.replace('bx-moon', 'bx-sun');
+            }
+
+            themeToggle.addEventListener('click', function() {
+                body.classList.toggle('light-theme');
+                if (body.classList.contains('light-theme')) {
+                    themeIcon.classList.replace('bx-moon', 'bx-sun');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    themeIcon.classList.replace('bx-sun', 'bx-moon');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            // Back button functionality
+            const backButton = document.querySelector('.back-button');
+            if (backButton) {
+                backButton.addEventListener('click', function() {
+                    window.history.back();
+                });
+            }
+        });
+
+        function submitFeedback() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const submitBtn = document.getElementById('submit-btn');
+            const loader = document.getElementById('loader');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            const formInputs = document.querySelectorAll('.feedback-form input, .feedback-form textarea');
+
+            // Validate form
+            if (!name || !email || !message) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Please fill in all fields.';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+                return;
+            }
+
+            // Additional email format validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Please enter a valid email address.';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+                return;
+            }
+
+            // Show loader and disable button
+            loader.style.display = 'block';
+            submitBtn.disabled = true;
+            formInputs.forEach(input => input.disabled = true);
+
+            // EmailJS parameters
+            const templateParams = {
+                name: name,
+                email: email,
+                message: message
+            };
+
+            // Send email using EmailJS
+            emailjs.send('service_x1g2z9j', 'template_61yvf6u', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    // Success: Hide loader, show success message, clear form
+                    loader.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    formInputs.forEach(input => {
+                        input.disabled = false;
+                        input.value = '';
+                    });
+
+                    // Hide success message after 3 seconds and re-enable button
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }, function(error) {
+                    console.error('FAILED...', error);
+                    // Error: Hide loader, show error message, re-enable form
+                    loader.style.display = 'none';
+                    errorMessage.style.display = 'block';
+                    errorMessage.textContent = 'Failed to send feedback. Please try again.';
+                    formInputs.forEach(input => input.disabled = false);
+                    submitBtn.disabled = false;
+
+                    // Hide error message after 3 seconds
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                });
+        }
+    </script>
+</body>
+</html>
