@@ -3,7 +3,8 @@ session_start();
 require_once 'db_connect.php';
 
 // Use our custom autoloader
-require_once 'C:\wamp64\www\admin panel\vendor\phpoffice\PhpSpreadsheet-4.2.0\PhpSpreadsheet-4.2.0\src\PhpSpreadsheet\autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php'; // Up one level from adminpanel/adminpanel/
+
 
 // Use statements
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
